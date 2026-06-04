@@ -1,0 +1,85 @@
+{
+  "level": "query",
+  "dataset": "Meaeq_HATESPEECH",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/Meaeq_HATESPEECH/normal/queries.jsonl",
+  "attacker_path": "data/Meaeq_HATESPEECH/attacker/queries.jsonl",
+  "text_field": "query",
+  "model_name": "google/electra-small-discriminator",
+  "generator": "learned",
+  "generator_model_name": "google/electra-small-generator",
+  "max_length": 128,
+  "mask_patterns": 50,
+  "mask_ratio": 0.5,
+  "epochs": 5,
+  "max_train_steps": 5000,
+  "train_batch_size": 32,
+  "eval_batch_size": 64,
+  "learning_rate": 1e-05,
+  "rtd_weight": 50.0,
+  "rmd_weight": 100.0,
+  "threshold_percentile": 95.0,
+  "test_sidedness": "upper",
+  "thresholds": {
+    "upper": 0.3191269725561141
+  },
+  "threshold": 0.3191269725561141,
+  "null_source": "train_normal_queries",
+  "normal_queries": 10000,
+  "train_normal_queries": 8000,
+  "heldout_benign_queries": 2000,
+  "attacker_queries": 1529,
+  "device": "cuda",
+  "seed": 42,
+  "training_history": [
+    {
+      "loss": 436.2614169921875,
+      "rtd": 0.616319655418396,
+      "rmd": 4.00665878200531,
+      "mlm": 4.779556543350219,
+      "steps": 250
+    },
+    {
+      "loss": 417.77006213378905,
+      "rtd": 0.501356307387352,
+      "rmd": 3.880716389656067,
+      "mlm": 4.630607189178467,
+      "steps": 500
+    },
+    {
+      "loss": 406.6525780029297,
+      "rtd": 0.48905863320827486,
+      "rmd": 3.7762130727767946,
+      "mlm": 4.578338830947876,
+      "steps": 750
+    },
+    {
+      "loss": 401.53551013183596,
+      "rtd": 0.48413522708415985,
+      "rmd": 3.728036810874939,
+      "mlm": 4.525068945884705,
+      "steps": 1000
+    },
+    {
+      "loss": 400.2084608154297,
+      "rtd": 0.480368937253952,
+      "rmd": 3.716598526954651,
+      "mlm": 4.530161065101623,
+      "steps": 1250
+    }
+  ],
+  "metrics": {
+    "queries": 3529,
+    "tp": 16,
+    "fp": 99,
+    "tn": 1901,
+    "fn": 1513,
+    "tpr": 0.010464355788096796,
+    "fpr": 0.0495,
+    "accuracy": 0.5432133748937376,
+    "auroc": 0.33176913015042514,
+    "auprc": 0.32771938681306456
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "dataset": "ME_BERT_boolq_random",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/ME_BERT_boolq_random/normal/queries.jsonl",
+  "attacker_path": "data/ME_BERT_boolq_random/attacker/queries.jsonl",
+  "text_field": "query",
+  "model_name": "google/electra-small-discriminator",
+  "generator": "learned",
+  "generator_model_name": "google/electra-small-generator",
+  "max_length": 128,
+  "mask_patterns": 50,
+  "mask_ratio": 0.5,
+  "epochs": 5,
+  "max_train_steps": 5000,
+  "train_batch_size": 32,
+  "eval_batch_size": 64,
+  "learning_rate": 1e-05,
+  "rtd_weight": 50.0,
+  "rmd_weight": 100.0,
+  "batch_size": 1500,
+  "threshold_percentile": 95.0,
+  "test_sidedness": "two-sided",
+  "thresholds": {
+    "lower": 0.17615786741872627,
+    "upper": 0.17811020108958084
+  },
+  "threshold": 0.17811020108958084,
+  "null_samples": 1000,
+  "batch_score_agg": "mean",
+  "score_quantile": 0.9,
+  "topk_fraction": 0.2,
+  "normal_queries": 9427,
+  "train_normal_queries": 7541,
+  "heldout_benign_size": 1886,
+  "attacker_queries": 1885,
+  "null_source": "train_normal_queries",
+  "mixed_attacker_ratios": [
+    0.05,
+    0.1,
+    0.25,
+    0.5
+  ],
+  "mixed_batches_per_ratio": 50,
+  "benign_eval_batches": 50,
+  "attacker_eval_batches": 50,
+  "device": "cuda",
+  "seed": 1,
+  "training_history": [
+    {
+      "loss": 436.12061509224833,
+      "rtd": 0.6499879478681089,
+      "rmd": 3.993640270114277,
+      "mlm": 4.257189919123076,
+      "steps": 236
+    },
+    {
+      "loss": 416.81048174844057,
+      "rtd": 0.5159402355767105,
+      "rmd": 3.869827040783718,
+      "mlm": 4.030765393007625,
+      "steps": 472
+    },
+    {
+      "loss": 402.432905261135,
+      "rtd": 0.49698415491865827,
+      "rmd": 3.736128201678804,
+      "mlm": 3.970878244600345,
+      "steps": 708
+    },
+    {
+      "loss": 392.2824930419436,
+      "rtd": 0.4928370075222036,
+      "rmd": 3.6367945654641063,
+      "mlm": 3.9611850637859067,
+      "steps": 944
+    },
+    {
+      "loss": 387.5032486550736,
+      "rtd": 0.49052964409171324,
+      "rmd": 3.5902905752513092,
+      "mlm": 3.9477085608130915,
+      "steps": 1180
+    }
+  ],
+  "metrics": {
+    "batches": 300,
+    "tp": 250,
+    "fp": 17,
+    "tn": 33,
+    "fn": 0,
+    "tpr": 1.0,
+    "fpr": 0.34,
+    "accuracy": 0.9433333333333334
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.43163055334647493,
+      "mean_attacker_ratio": 1.0
+    },
+    "heldout_benign": {
+      "batches": 50,
+      "suspicious": 17,
+      "detection_rate": 0.34,
+      "mean_score": 0.17795153355677926,
+      "mean_attacker_ratio": 0.0
+    },
+    "mixed_0.05": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.1906153136142095,
+      "mean_attacker_ratio": 0.04999999999999999
+    },
+    "mixed_0.1": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.2034296238390604,
+      "mean_attacker_ratio": 0.09999999999999998
+    },
+    "mixed_0.25": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.24130283578634262,
+      "mean_attacker_ratio": 0.25
+    },
+    "mixed_0.5": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.3047027789155642,
+      "mean_attacker_ratio": 0.5
+    }
+  }
+}

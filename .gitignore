@@ -1,0 +1,27 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+*:Zone.Identifier
+.DS_Store
+Thumbs.db
+
+*.log
+*.aux
+*.out
+*.toc
+*.synctex.gz
+
+cache/
+outputs/
+outputs_smoke/
+*.npy
+
+# Reconstructed local copies of split MNLI normal-query files.
+data/ME_BERT_mnli_random/normal/queries.jsonl
+data/ME_BERT_mnli_wiki/normal/queries.jsonl
+
+.ipynb_checkpoints/
+.env
+.venv/
+venv/

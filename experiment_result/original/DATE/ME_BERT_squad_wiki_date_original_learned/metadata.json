@@ -1,0 +1,71 @@
+{
+  "level": "query",
+  "dataset": "ME_BERT_squad_wiki",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/ME_BERT_squad_wiki/normal/queries.jsonl",
+  "attacker_path": "data/ME_BERT_squad_wiki/attacker/queries.jsonl",
+  "text_field": "query",
+  "model_name": "google/electra-small-discriminator",
+  "generator": "learned",
+  "generator_model_name": "google/electra-small-generator",
+  "max_length": 128,
+  "mask_patterns": 50,
+  "mask_ratio": 0.5,
+  "epochs": 5,
+  "max_train_steps": 5000,
+  "train_batch_size": 32,
+  "eval_batch_size": 64,
+  "learning_rate": 1e-05,
+  "rtd_weight": 50.0,
+  "rmd_weight": 100.0,
+  "threshold_percentile": 95.0,
+  "test_sidedness": "upper",
+  "thresholds": {
+    "upper": 0.27992868423461914
+  },
+  "threshold": 0.27992868423461914,
+  "null_source": "train_normal_queries",
+  "normal_queries": 87599,
+  "train_normal_queries": 70079,
+  "heldout_benign_queries": 17520,
+  "attacker_queries": 17520,
+  "device": "cuda",
+  "seed": 42,
+  "training_history": [
+    {
+      "loss": 354.6983157331693,
+      "rtd": 0.5212533308820118,
+      "rmd": 3.2438035630787203,
+      "mlm": 4.255293291724418,
+      "steps": 2190
+    },
+    {
+      "loss": 220.11162653830647,
+      "rtd": 0.49699390712991987,
+      "rmd": 1.9110852094455204,
+      "mlm": 4.153410486380996,
+      "steps": 4380
+    },
+    {
+      "loss": 192.2749750937185,
+      "rtd": 0.4969061223729964,
+      "rmd": 1.632939919540959,
+      "mlm": 4.135676924643978,
+      "steps": 5000
+    }
+  ],
+  "metrics": {
+    "queries": 35040,
+    "tp": 2782,
+    "fp": 899,
+    "tn": 16621,
+    "fn": 14738,
+    "tpr": 0.15878995433789955,
+    "fpr": 0.051312785388127856,
+    "accuracy": 0.5537385844748859,
+    "auroc": 0.6170503703529951,
+    "auprc": 0.6357099306455309
+  }
+}

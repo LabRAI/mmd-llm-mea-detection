@@ -1,0 +1,61 @@
+{
+  "detector": "sample_level_marginal_mahalanobis",
+  "dataset": "model_leeching",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/model_leeching/normal/queries.jsonl",
+  "attacker_path": "data/model_leeching/attacker/queries.jsonl",
+  "text_field": "query",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "query_prefix": "",
+  "normalize_embeddings": true,
+  "threshold_percentile": 95.0,
+  "threshold": 579.5794906800722,
+  "normal_train_ratio": 0.7,
+  "normal_calibration_ratio": 0.1,
+  "maha_ridge": 1e-06,
+  "normal_queries": 10062,
+  "benign_fit_size": 7043,
+  "benign_calibration_size": 1006,
+  "heldout_benign_size": 2013,
+  "attacker_queries": 10062,
+  "embedding_dim": 384,
+  "covariance_rank_estimate": 384,
+  "min_covariance_variance": 1.0001272130466532e-06,
+  "max_covariance_variance": 0.032034412026405334,
+  "null_score_mean": 404.77789909903817,
+  "null_score_std": 98.83496818840533,
+  "null_score_min": 183.77252334645883,
+  "null_score_max": 853.8822306685505,
+  "seed": 42,
+  "metrics": {
+    "samples": 12075,
+    "tp": 29,
+    "fp": 132,
+    "tn": 1881,
+    "fn": 10033,
+    "tpr": 0.0028821307891075333,
+    "fpr": 0.06557377049180328,
+    "accuracy": 0.15817805383022773,
+    "precision": 0.18012422360248448,
+    "auroc": 0.674561681805296,
+    "aupr_ood": 0.850094185337255
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "samples": 10062,
+      "suspicious": 29,
+      "detection_rate": 0.0028821307891075333,
+      "mean_score": 447.6908720000682,
+      "std_score": 45.941097155488684
+    },
+    "heldout_benign": {
+      "samples": 2013,
+      "suspicious": 132,
+      "detection_rate": 0.06557377049180328,
+      "mean_score": 406.4880433810797,
+      "std_score": 104.68918105540254
+    }
+  }
+}

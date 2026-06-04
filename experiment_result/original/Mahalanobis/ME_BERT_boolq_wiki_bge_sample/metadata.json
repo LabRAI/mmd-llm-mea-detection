@@ -1,0 +1,61 @@
+{
+  "detector": "sample_level_marginal_mahalanobis",
+  "dataset": "ME_BERT_boolq_wiki",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/ME_BERT_boolq_wiki/normal/queries.jsonl",
+  "attacker_path": "data/ME_BERT_boolq_wiki/attacker/queries.jsonl",
+  "text_field": "query",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "query_prefix": "",
+  "normalize_embeddings": true,
+  "threshold_percentile": 95.0,
+  "threshold": 675.2646956661464,
+  "normal_train_ratio": 0.7,
+  "normal_calibration_ratio": 0.1,
+  "maha_ridge": 1e-06,
+  "normal_queries": 9427,
+  "benign_fit_size": 6598,
+  "benign_calibration_size": 942,
+  "heldout_benign_size": 1887,
+  "attacker_queries": 1885,
+  "embedding_dim": 384,
+  "covariance_rank_estimate": 384,
+  "min_covariance_variance": 1.000010911411664e-06,
+  "max_covariance_variance": 0.02539709582924843,
+  "null_score_mean": 401.402713685671,
+  "null_score_std": 187.09695383902363,
+  "null_score_min": 127.06186171076257,
+  "null_score_max": 2698.8876113628203,
+  "seed": 42,
+  "metrics": {
+    "samples": 3772,
+    "tp": 69,
+    "fp": 117,
+    "tn": 1770,
+    "fn": 1816,
+    "tpr": 0.03660477453580902,
+    "fpr": 0.06200317965023847,
+    "accuracy": 0.4875397667020148,
+    "precision": 0.3709677419354839,
+    "auroc": 0.5873896364768576,
+    "aupr_ood": 0.5284367027371247
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "samples": 1885,
+      "suspicious": 69,
+      "detection_rate": 0.03660477453580902,
+      "mean_score": 424.65612556018385,
+      "std_score": 129.3596269452394
+    },
+    "heldout_benign": {
+      "samples": 1887,
+      "suspicious": 117,
+      "detection_rate": 0.06200317965023847,
+      "mean_score": 406.02859558696315,
+      "std_score": 170.5012294909109
+    }
+  }
+}

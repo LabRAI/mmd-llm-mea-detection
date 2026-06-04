@@ -1,0 +1,85 @@
+{
+  "level": "query",
+  "dataset": "Meaeq_SST-2",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/Meaeq_SST-2/normal/queries.jsonl",
+  "attacker_path": "data/Meaeq_SST-2/attacker/queries.jsonl",
+  "text_field": "query",
+  "model_name": "google/electra-small-discriminator",
+  "generator": "learned",
+  "generator_model_name": "google/electra-small-generator",
+  "max_length": 128,
+  "mask_patterns": 50,
+  "mask_ratio": 0.5,
+  "epochs": 5,
+  "max_train_steps": 5000,
+  "train_batch_size": 32,
+  "eval_batch_size": 64,
+  "learning_rate": 1e-05,
+  "rtd_weight": 50.0,
+  "rmd_weight": 100.0,
+  "threshold_percentile": 95.0,
+  "test_sidedness": "upper",
+  "thresholds": {
+    "upper": 0.4004924714565271
+  },
+  "threshold": 0.4004924714565271,
+  "null_source": "train_normal_queries",
+  "normal_queries": 10000,
+  "train_normal_queries": 8000,
+  "heldout_benign_queries": 2000,
+  "attacker_queries": 1536,
+  "device": "cuda",
+  "seed": 42,
+  "training_history": [
+    {
+      "loss": 436.7203065185547,
+      "rtd": 0.6013370218276978,
+      "rmd": 4.012478337287903,
+      "mlm": 5.405620433807373,
+      "steps": 250
+    },
+    {
+      "loss": 419.7482966308594,
+      "rtd": 0.47281516396999357,
+      "rmd": 3.9101214418411256,
+      "mlm": 5.095393827438355,
+      "steps": 500
+    },
+    {
+      "loss": 408.9241297607422,
+      "rtd": 0.45366541075706485,
+      "rmd": 3.8124170179367067,
+      "mlm": 4.999157106399536,
+      "steps": 750
+    },
+    {
+      "loss": 402.36209594726563,
+      "rtd": 0.44381750297546385,
+      "rmd": 3.752074697494507,
+      "mlm": 4.963750783920288,
+      "steps": 1000
+    },
+    {
+      "loss": 399.1000841064453,
+      "rtd": 0.44604375791549683,
+      "rmd": 3.7185104694366453,
+      "mlm": 4.946849393844604,
+      "steps": 1250
+    }
+  ],
+  "metrics": {
+    "queries": 3536,
+    "tp": 0,
+    "fp": 92,
+    "tn": 1908,
+    "fn": 1536,
+    "tpr": 0.0,
+    "fpr": 0.046,
+    "accuracy": 0.5395927601809954,
+    "auroc": 0.4461689453125,
+    "auprc": 0.36773177502141047
+  }
+}

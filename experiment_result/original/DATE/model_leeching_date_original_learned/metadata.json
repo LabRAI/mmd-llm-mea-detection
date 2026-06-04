@@ -1,0 +1,85 @@
+{
+  "level": "query",
+  "dataset": "model_leeching",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/model_leeching/normal/queries.jsonl",
+  "attacker_path": "data/model_leeching/attacker/queries.jsonl",
+  "text_field": "query",
+  "model_name": "google/electra-small-discriminator",
+  "generator": "learned",
+  "generator_model_name": "google/electra-small-generator",
+  "max_length": 128,
+  "mask_patterns": 50,
+  "mask_ratio": 0.5,
+  "epochs": 5,
+  "max_train_steps": 5000,
+  "train_batch_size": 32,
+  "eval_batch_size": 64,
+  "learning_rate": 1e-05,
+  "rtd_weight": 50.0,
+  "rmd_weight": 100.0,
+  "threshold_percentile": 95.0,
+  "test_sidedness": "upper",
+  "thresholds": {
+    "upper": 0.24752022027969356
+  },
+  "threshold": 0.24752022027969356,
+  "null_source": "train_normal_queries",
+  "normal_queries": 10062,
+  "train_normal_queries": 8049,
+  "heldout_benign_queries": 2013,
+  "attacker_queries": 10062,
+  "device": "cuda",
+  "seed": 42,
+  "training_history": [
+    {
+      "loss": 424.11978391310134,
+      "rtd": 0.5614506496355569,
+      "rmd": 3.9115119521581456,
+      "mlm": 4.896056763680622,
+      "steps": 252
+    },
+    {
+      "loss": 393.7469104677272,
+      "rtd": 0.4386751031428335,
+      "rmd": 3.672645836827888,
+      "mlm": 4.548571520909743,
+      "steps": 504
+    },
+    {
+      "loss": 382.83608813907273,
+      "rtd": 0.42359547576766265,
+      "rmd": 3.5725631804210916,
+      "mlm": 4.399997718586865,
+      "steps": 756
+    },
+    {
+      "loss": 376.9757229803452,
+      "rtd": 0.41845206191916245,
+      "rmd": 3.517240948492821,
+      "mlm": 4.329026856234628,
+      "steps": 1008
+    },
+    {
+      "loss": 374.8438486958723,
+      "rtd": 0.41635469003173337,
+      "rmd": 3.4975616219532775,
+      "mlm": 4.269952781690042,
+      "steps": 1260
+    }
+  ],
+  "metrics": {
+    "queries": 12075,
+    "tp": 445,
+    "fp": 104,
+    "tn": 1909,
+    "fn": 9617,
+    "tpr": 0.04422580003975353,
+    "fpr": 0.051664182811723795,
+    "accuracy": 0.19494824016563148,
+    "auroc": 0.8342453637916848,
+    "auprc": 0.9185903331657592
+  }
+}

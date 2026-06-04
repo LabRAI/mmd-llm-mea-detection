@@ -1,0 +1,61 @@
+{
+  "detector": "sample_level_marginal_mahalanobis",
+  "dataset": "Meaeq_HATESPEECH",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/Meaeq_HATESPEECH/normal/queries.jsonl",
+  "attacker_path": "data/Meaeq_HATESPEECH/attacker/queries.jsonl",
+  "text_field": "query",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "query_prefix": "",
+  "normalize_embeddings": true,
+  "threshold_percentile": 95.0,
+  "threshold": 649.6800632691289,
+  "normal_train_ratio": 0.7,
+  "normal_calibration_ratio": 0.1,
+  "maha_ridge": 1e-06,
+  "normal_queries": 10000,
+  "benign_fit_size": 7000,
+  "benign_calibration_size": 1000,
+  "heldout_benign_size": 2000,
+  "attacker_queries": 1529,
+  "embedding_dim": 384,
+  "covariance_rank_estimate": 384,
+  "min_covariance_variance": 1.0000971997214947e-06,
+  "max_covariance_variance": 0.028401214629411697,
+  "null_score_mean": 405.1682497130347,
+  "null_score_std": 121.31284126932512,
+  "null_score_min": 185.18639372469926,
+  "null_score_max": 964.5615162751508,
+  "seed": 42,
+  "metrics": {
+    "samples": 3529,
+    "tp": 822,
+    "fp": 81,
+    "tn": 1919,
+    "fn": 707,
+    "tpr": 0.5376062786134729,
+    "fpr": 0.0405,
+    "accuracy": 0.7767072825162936,
+    "precision": 0.9102990033222591,
+    "auroc": 0.8893695225637672,
+    "aupr_ood": 0.8642394070673445
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "samples": 1529,
+      "suspicious": 822,
+      "detection_rate": 0.5376062786134729,
+      "mean_score": 659.3841779991707,
+      "std_score": 166.66770111678326
+    },
+    "heldout_benign": {
+      "samples": 2000,
+      "suspicious": 81,
+      "detection_rate": 0.0405,
+      "mean_score": 403.2907494675045,
+      "std_score": 118.34516453747193
+    }
+  }
+}

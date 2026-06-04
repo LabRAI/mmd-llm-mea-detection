@@ -1,0 +1,85 @@
+{
+  "level": "query",
+  "dataset": "Meaeq_AGNEWS",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/Meaeq_AGNEWS/normal/queries.jsonl",
+  "attacker_path": "data/Meaeq_AGNEWS/attacker/queries.jsonl",
+  "text_field": "query",
+  "model_name": "google/electra-small-discriminator",
+  "generator": "learned",
+  "generator_model_name": "google/electra-small-generator",
+  "max_length": 128,
+  "mask_patterns": 50,
+  "mask_ratio": 0.5,
+  "epochs": 5,
+  "max_train_steps": 5000,
+  "train_batch_size": 32,
+  "eval_batch_size": 64,
+  "learning_rate": 1e-05,
+  "rtd_weight": 50.0,
+  "rmd_weight": 100.0,
+  "threshold_percentile": 95.0,
+  "test_sidedness": "upper",
+  "thresholds": {
+    "upper": 0.22400208711624142
+  },
+  "threshold": 0.22400208711624142,
+  "null_source": "train_normal_queries",
+  "normal_queries": 10000,
+  "train_normal_queries": 8000,
+  "heldout_benign_queries": 2000,
+  "attacker_queries": 5231,
+  "device": "cuda",
+  "seed": 42,
+  "training_history": [
+    {
+      "loss": 432.52986389160156,
+      "rtd": 0.6229680300951004,
+      "rmd": 3.9655595846176146,
+      "mlm": 4.825503534317017,
+      "steps": 250
+    },
+    {
+      "loss": 408.67056018066404,
+      "rtd": 0.50447860622406,
+      "rmd": 3.788547045707703,
+      "mlm": 4.5919250411987305,
+      "steps": 500
+    },
+    {
+      "loss": 390.63117431640626,
+      "rtd": 0.49505027997493745,
+      "rmd": 3.6134721689224243,
+      "mlm": 4.53144313621521,
+      "steps": 750
+    },
+    {
+      "loss": 380.7068111572266,
+      "rtd": 0.4886477074623108,
+      "rmd": 3.5178468828201295,
+      "mlm": 4.489736906051636,
+      "steps": 1000
+    },
+    {
+      "loss": 373.7408728027344,
+      "rtd": 0.4868692514896393,
+      "rmd": 3.4491373538970946,
+      "mlm": 4.483675075531006,
+      "steps": 1250
+    }
+  ],
+  "metrics": {
+    "queries": 7231,
+    "tp": 820,
+    "fp": 106,
+    "tn": 1894,
+    "fn": 4411,
+    "tpr": 0.1567577900974957,
+    "fpr": 0.053,
+    "accuracy": 0.3753284469644586,
+    "auroc": 0.6433742592238578,
+    "auprc": 0.8209014090149731
+  }
+}

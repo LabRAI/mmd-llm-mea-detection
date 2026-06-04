@@ -1,0 +1,101 @@
+{
+  "dataset": "ME_BERT_squad_wiki",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/ME_BERT_squad_wiki/normal/queries.jsonl",
+  "attacker_path": "data/ME_BERT_squad_wiki/attacker/queries.jsonl",
+  "text_field": "query",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "embedding_device": "cuda",
+  "compute_device": "cuda",
+  "compute_backend": "torch",
+  "query_prefix": "",
+  "normalize_embeddings": true,
+  "batch_size": 1500,
+  "score_mode": "ratio",
+  "detection_tail": "upper",
+  "similarity_threshold": 0.8658841252326965,
+  "similarity_threshold_source": "benign_pair_percentile",
+  "similarity_threshold_percentile": 99.0,
+  "pair_sample_size": 200000,
+  "null_samples": 1000,
+  "threshold_percentile": 95.0,
+  "threshold": 0.010761752279297309,
+  "upper_threshold": 0.010761752279297309,
+  "lower_threshold": 0.009088636869023795,
+  "normal_queries": 87599,
+  "benign_pool_size": 70079,
+  "heldout_benign_size": 17520,
+  "attacker_queries": 17520,
+  "mixed_attacker_ratios": [
+    0.05,
+    0.1,
+    0.25,
+    0.5
+  ],
+  "mixed_batches_per_ratio": 50,
+  "benign_eval_batches": 50,
+  "attacker_eval_batches": 50,
+  "seed": 42,
+  "metrics": {
+    "batches": 300,
+    "tp": 78,
+    "fp": 2,
+    "tn": 48,
+    "fn": 172,
+    "tpr": 0.312,
+    "fpr": 0.04,
+    "accuracy": 0.42
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.01844819212808539,
+      "mean_similar_pair_count": 20740.38,
+      "mean_attacker_ratio": 1.0
+    },
+    "heldout_benign": {
+      "batches": 50,
+      "suspicious": 2,
+      "detection_rate": 0.04,
+      "mean_score": 0.009592635090060041,
+      "mean_similar_pair_count": 10784.52,
+      "mean_attacker_ratio": 0.0
+    },
+    "mixed_0.05": {
+      "batches": 50,
+      "suspicious": 0,
+      "detection_rate": 0.0,
+      "mean_score": 0.009204394040471424,
+      "mean_similar_pair_count": 10348.04,
+      "mean_attacker_ratio": 0.04999999999999999
+    },
+    "mixed_0.1": {
+      "batches": 50,
+      "suspicious": 0,
+      "detection_rate": 0.0,
+      "mean_score": 0.009265679341783411,
+      "mean_similar_pair_count": 10416.94,
+      "mean_attacker_ratio": 0.09999999999999998
+    },
+    "mixed_0.25": {
+      "batches": 50,
+      "suspicious": 0,
+      "detection_rate": 0.0,
+      "mean_score": 0.009462521681120746,
+      "mean_similar_pair_count": 10638.24,
+      "mean_attacker_ratio": 0.25
+    },
+    "mixed_0.5": {
+      "batches": 50,
+      "suspicious": 28,
+      "detection_rate": 0.56,
+      "mean_score": 0.010743019790971758,
+      "mean_similar_pair_count": 12077.84,
+      "mean_attacker_ratio": 0.5
+    }
+  }
+}

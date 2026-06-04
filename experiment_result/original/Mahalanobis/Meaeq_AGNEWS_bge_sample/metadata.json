@@ -1,0 +1,61 @@
+{
+  "detector": "sample_level_marginal_mahalanobis",
+  "dataset": "Meaeq_AGNEWS",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/Meaeq_AGNEWS/normal/queries.jsonl",
+  "attacker_path": "data/Meaeq_AGNEWS/attacker/queries.jsonl",
+  "text_field": "query",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "query_prefix": "",
+  "normalize_embeddings": true,
+  "threshold_percentile": 95.0,
+  "threshold": 523.8859622370579,
+  "normal_train_ratio": 0.7,
+  "normal_calibration_ratio": 0.1,
+  "maha_ridge": 1e-06,
+  "normal_queries": 10000,
+  "benign_fit_size": 7000,
+  "benign_calibration_size": 1000,
+  "heldout_benign_size": 2000,
+  "attacker_queries": 5231,
+  "embedding_dim": 384,
+  "covariance_rank_estimate": 384,
+  "min_covariance_variance": 1.0001344890042674e-06,
+  "max_covariance_variance": 0.026265690103173256,
+  "null_score_mean": 405.3452735502946,
+  "null_score_std": 66.75839128179193,
+  "null_score_min": 258.6761003354917,
+  "null_score_max": 659.900646304502,
+  "seed": 42,
+  "metrics": {
+    "samples": 7231,
+    "tp": 2483,
+    "fp": 117,
+    "tn": 1883,
+    "fn": 2748,
+    "tpr": 0.47467023513668516,
+    "fpr": 0.0585,
+    "accuracy": 0.6037892407689116,
+    "precision": 0.955,
+    "auroc": 0.8375673867329383,
+    "aupr_ood": 0.9286640021039978
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "samples": 5231,
+      "suspicious": 2483,
+      "detection_rate": 0.47467023513668516,
+      "mean_score": 519.3341868269264,
+      "std_score": 94.77102343987244
+    },
+    "heldout_benign": {
+      "samples": 2000,
+      "suspicious": 117,
+      "detection_rate": 0.0585,
+      "mean_score": 404.72890157298974,
+      "std_score": 69.01501078710919
+    }
+  }
+}

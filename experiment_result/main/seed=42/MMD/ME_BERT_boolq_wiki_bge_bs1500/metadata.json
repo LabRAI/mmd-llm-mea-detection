@@ -1,0 +1,92 @@
+{
+  "dataset": "ME_BERT_boolq_wiki",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/ME_BERT_boolq_wiki/normal/queries.jsonl",
+  "attacker_path": "data/ME_BERT_boolq_wiki/attacker/queries.jsonl",
+  "text_field": "query",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "query_prefix": "",
+  "normalize_embeddings": true,
+  "batch_size": 1500,
+  "reference_repeats": 20,
+  "null_samples": 1000,
+  "threshold_percentile": 95.0,
+  "threshold": 0.00010716915130615234,
+  "median_bandwidth": 0.7109717056932623,
+  "sigmas": [
+    0.35548585284663115,
+    0.7109717056932623,
+    1.4219434113865246,
+    2.843886822773049
+  ],
+  "normal_queries": 9427,
+  "benign_pool_size": 7541,
+  "heldout_benign_size": 1886,
+  "attacker_queries": 1885,
+  "mixed_attacker_ratios": [
+    0.05,
+    0.1,
+    0.25,
+    0.5
+  ],
+  "mixed_batches_per_ratio": 50,
+  "benign_eval_batches": 50,
+  "attacker_eval_batches": 50,
+  "seed": 42,
+  "metrics": {
+    "batches": 300,
+    "tp": 157,
+    "fp": 0,
+    "tn": 50,
+    "fn": 93,
+    "tpr": 0.628,
+    "fpr": 0.0,
+    "accuracy": 0.69
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.012084981679916385,
+      "mean_attacker_ratio": 1.0
+    },
+    "heldout_benign": {
+      "batches": 50,
+      "suspicious": 0,
+      "detection_rate": 0.0,
+      "mean_score": -1.0433316230773924e-05,
+      "mean_attacker_ratio": 0.0
+    },
+    "mixed_0.05": {
+      "batches": 50,
+      "suspicious": 0,
+      "detection_rate": 0.0,
+      "mean_score": 1.9401311874389647e-06,
+      "mean_attacker_ratio": 0.04999999999999999
+    },
+    "mixed_0.1": {
+      "batches": 50,
+      "suspicious": 7,
+      "detection_rate": 0.14,
+      "mean_score": 7.596027851104735e-05,
+      "mean_attacker_ratio": 0.09999999999999998
+    },
+    "mixed_0.25": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.0006753320693969725,
+      "mean_attacker_ratio": 0.25
+    },
+    "mixed_0.5": {
+      "batches": 50,
+      "suspicious": 50,
+      "detection_rate": 1.0,
+      "mean_score": 0.002930852770805358,
+      "mean_attacker_ratio": 0.5
+    }
+  }
+}

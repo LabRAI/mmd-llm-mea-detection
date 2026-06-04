@@ -1,0 +1,61 @@
+{
+  "detector": "sample_level_marginal_mahalanobis",
+  "dataset": "Meaeq_SST-2",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/Meaeq_SST-2/normal/queries.jsonl",
+  "attacker_path": "data/Meaeq_SST-2/attacker/queries.jsonl",
+  "text_field": "query",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "query_prefix": "",
+  "normalize_embeddings": true,
+  "threshold_percentile": 95.0,
+  "threshold": 668.3793779691383,
+  "normal_train_ratio": 0.7,
+  "normal_calibration_ratio": 0.1,
+  "maha_ridge": 1e-06,
+  "normal_queries": 10000,
+  "benign_fit_size": 7000,
+  "benign_calibration_size": 1000,
+  "heldout_benign_size": 2000,
+  "attacker_queries": 1536,
+  "embedding_dim": 384,
+  "covariance_rank_estimate": 384,
+  "min_covariance_variance": 1.0000853762903716e-06,
+  "max_covariance_variance": 0.03388582915067673,
+  "null_score_mean": 406.3619990636802,
+  "null_score_std": 130.65404439655603,
+  "null_score_min": 155.5559591578321,
+  "null_score_max": 1129.2654913428696,
+  "seed": 42,
+  "metrics": {
+    "samples": 3536,
+    "tp": 1109,
+    "fp": 83,
+    "tn": 1917,
+    "fn": 427,
+    "tpr": 0.7220052083333334,
+    "fpr": 0.0415,
+    "accuracy": 0.8557692307692307,
+    "precision": 0.9303691275167785,
+    "auroc": 0.9465595703125,
+    "aupr_ood": 0.9216075297771851
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "samples": 1536,
+      "suspicious": 1109,
+      "detection_rate": 0.7220052083333334,
+      "mean_score": 742.0636209428106,
+      "std_score": 144.4181824764338
+    },
+    "heldout_benign": {
+      "samples": 2000,
+      "suspicious": 83,
+      "detection_rate": 0.0415,
+      "mean_score": 402.247068755729,
+      "std_score": 131.30094111349078
+    }
+  }
+}

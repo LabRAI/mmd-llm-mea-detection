@@ -1,0 +1,85 @@
+{
+  "level": "query",
+  "dataset": "ME_BERT_boolq_random",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/ME_BERT_boolq_random/normal/queries.jsonl",
+  "attacker_path": "data/ME_BERT_boolq_random/attacker/queries.jsonl",
+  "text_field": "query",
+  "model_name": "google/electra-small-discriminator",
+  "generator": "learned",
+  "generator_model_name": "google/electra-small-generator",
+  "max_length": 128,
+  "mask_patterns": 50,
+  "mask_ratio": 0.5,
+  "epochs": 5,
+  "max_train_steps": 5000,
+  "train_batch_size": 32,
+  "eval_batch_size": 64,
+  "learning_rate": 1e-05,
+  "rtd_weight": 50.0,
+  "rmd_weight": 100.0,
+  "threshold_percentile": 95.0,
+  "test_sidedness": "upper",
+  "thresholds": {
+    "upper": 0.18637216091156006
+  },
+  "threshold": 0.18637216091156006,
+  "null_source": "train_normal_queries",
+  "normal_queries": 9427,
+  "train_normal_queries": 7541,
+  "heldout_benign_queries": 1886,
+  "attacker_queries": 1885,
+  "device": "cuda",
+  "seed": 42,
+  "training_history": [
+    {
+      "loss": 435.58105304851057,
+      "rtd": 0.626592437779298,
+      "rmd": 4.000006042255866,
+      "mlm": 4.250826368090361,
+      "steps": 236
+    },
+    {
+      "loss": 418.0806334834092,
+      "rtd": 0.49857605661578874,
+      "rmd": 3.891254325489074,
+      "mlm": 4.0263976030839155,
+      "steps": 472
+    },
+    {
+      "loss": 407.99047971755056,
+      "rtd": 0.48285106082538637,
+      "rmd": 3.7987808525174986,
+      "mlm": 3.969841641498298,
+      "steps": 708
+    },
+    {
+      "loss": 397.23170468965617,
+      "rtd": 0.4790006150595153,
+      "rmd": 3.693354351800975,
+      "mlm": 3.946239558064231,
+      "steps": 944
+    },
+    {
+      "loss": 392.17101368071343,
+      "rtd": 0.4777245604143015,
+      "rmd": 3.6435348094734805,
+      "mlm": 3.9313037623430875,
+      "steps": 1180
+    }
+  ],
+  "metrics": {
+    "queries": 3771,
+    "tp": 1885,
+    "fp": 92,
+    "tn": 1794,
+    "fn": 0,
+    "tpr": 1.0,
+    "fpr": 0.04878048780487805,
+    "accuracy": 0.9756032882524529,
+    "auroc": 1.0,
+    "auprc": 1.0
+  }
+}

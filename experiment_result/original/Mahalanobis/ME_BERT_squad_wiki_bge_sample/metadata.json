@@ -1,0 +1,61 @@
+{
+  "detector": "sample_level_marginal_mahalanobis",
+  "dataset": "ME_BERT_squad_wiki",
+  "data_root": "data",
+  "normal_source": "dataset",
+  "global_normal_path": "data/global_normal/queries.jsonl",
+  "normal_path": "data/ME_BERT_squad_wiki/normal/queries.jsonl",
+  "attacker_path": "data/ME_BERT_squad_wiki/attacker/queries.jsonl",
+  "text_field": "query",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "query_prefix": "",
+  "normalize_embeddings": true,
+  "threshold_percentile": 95.0,
+  "threshold": 792.9318673150248,
+  "normal_train_ratio": 0.7,
+  "normal_calibration_ratio": 0.1,
+  "maha_ridge": 1e-06,
+  "normal_queries": 87599,
+  "benign_fit_size": 61319,
+  "benign_calibration_size": 8759,
+  "heldout_benign_size": 17521,
+  "attacker_queries": 17520,
+  "embedding_dim": 384,
+  "covariance_rank_estimate": 384,
+  "min_covariance_variance": 1.0000735528592486e-06,
+  "max_covariance_variance": 0.018070271238684654,
+  "null_score_mean": 377.4151481818251,
+  "null_score_std": 198.73654595661827,
+  "null_score_min": 130.2790100705297,
+  "null_score_max": 1819.5535159048736,
+  "seed": 42,
+  "metrics": {
+    "samples": 35041,
+    "tp": 661,
+    "fp": 916,
+    "tn": 16605,
+    "fn": 16859,
+    "tpr": 0.037728310502283105,
+    "fpr": 0.052280120997659954,
+    "accuracy": 0.4927370794212494,
+    "precision": 0.41915028535193405,
+    "auroc": 0.5942601298533084,
+    "aupr_ood": 0.5387262587354285
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "samples": 17520,
+      "suspicious": 661,
+      "detection_rate": 0.037728310502283105,
+      "mean_score": 404.63716926530975,
+      "std_score": 188.36148277594148
+    },
+    "heldout_benign": {
+      "samples": 17521,
+      "suspicious": 916,
+      "detection_rate": 0.052280120997659954,
+      "mean_score": 382.2787431254399,
+      "std_score": 203.36574916815107
+    }
+  }
+}

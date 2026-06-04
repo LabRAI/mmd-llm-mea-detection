@@ -1,0 +1,58 @@
+{
+  "method": "stream_prada_single_group_shapiro",
+  "note": "Original PRADA is client-level and class-conditioned. This reproduces the stateful stream/growing-set logic, using a single group because these LLM query datasets do not provide target-model predicted classes.",
+  "dataset": "ME_BERT_squad_wiki",
+  "normal_source": "dataset",
+  "normal_path": "data/ME_BERT_squad_wiki/normal/queries.jsonl",
+  "attacker_path": "data/ME_BERT_squad_wiki/attacker/queries.jsonl",
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "device": "cuda",
+  "compute_device": "cuda",
+  "normalize_embeddings": true,
+  "distance_metric": "l2",
+  "stream_length": 3000,
+  "min_distances": 100,
+  "shapiro_interval": 10,
+  "precompute_distances": true,
+  "stop_on_detection": true,
+  "calibration_streams": 100,
+  "threshold_percentile": 95.0,
+  "threshold_score": 0.03862578484843745,
+  "delta_w_threshold": 0.9613742151515625,
+  "normal_queries": 87599,
+  "benign_pool_size": 70079,
+  "heldout_benign_size": 17520,
+  "attacker_queries": 17520,
+  "mixed_attacker_ratios": [],
+  "seed": 42,
+  "metrics": {
+    "streams": 100,
+    "tp": 4,
+    "fp": 0,
+    "tn": 50,
+    "fn": 46,
+    "tpr": 0.08,
+    "fpr": 0.0,
+    "accuracy": 0.54
+  },
+  "metrics_by_split": {
+    "attacker": {
+      "streams": 50,
+      "suspicious": 4,
+      "detection_rate": 0.08,
+      "mean_score": 0.023963416244987636,
+      "mean_min_w_statistic": 0.9760365837550122,
+      "mean_detection_step": 191.0,
+      "mean_attacker_ratio": 1.0
+    },
+    "heldout_benign": {
+      "streams": 50,
+      "suspicious": 0,
+      "detection_rate": 0.0,
+      "mean_score": 0.019909514673523566,
+      "mean_min_w_statistic": 0.9800904853264764,
+      "mean_detection_step": NaN,
+      "mean_attacker_ratio": 0.0
+    }
+  }
+}
