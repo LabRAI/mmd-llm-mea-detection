@@ -231,8 +231,3 @@ metadata.json
 ```
 
 These outputs are sufficient to compute benign FPR, attacker TPR, mixed-traffic TPR, average TPR, and balanced accuracy.
-
-## Anonymity Note
-
-This artifact is prepared for anonymous review.
-It intentionally excludes paper drafts, local caches, generated embedding files, and unrelated intermediate files.
