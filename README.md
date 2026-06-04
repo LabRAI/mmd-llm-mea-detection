@@ -216,4 +216,4 @@ If you find this repository useful, please cite the paper. A BibTeX entry will b
 
 ## Contact
 
-For questions about the code or experiments, please open an issue in this repository.
+For questions about the code or experiments, please contact sl26u@fsu.edu.
