@@ -93,6 +93,20 @@ bash MMD_detection/run_mmd_sensitivity_gpu.sh
 
 The MMD detector writes `metadata.json` and `batch_scores.csv` under the selected output directory.
 
+## Supplementary Experiments
+
+The `supplementary_experiments/` folder contains scripts for extra MMD sensitivity and runtime analyses:
+
+```bash
+bash supplementary_experiments/run_mmd_embedding_model_experiment.sh
+bash supplementary_experiments/run_mmd_reference_repeats_experiment.sh
+bash supplementary_experiments/run_mmd_null_samples_experiment.sh
+bash supplementary_experiments/run_cold_cache_wallclock.sh
+```
+
+By default, these scripts write aggregate CSV files under `supplementary_experiments/<experiment-name>/results/`.
+They may also create local `logs/`, `outputs/`, and `cache/` directories during execution.
+
 ## Adapted Baselines
 
 Run adapted PRADA:
