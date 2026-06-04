@@ -1,20 +1,35 @@
-# Model Extraction Query-Traffic Detection
+# MMD-LLM-MEA-Detection
 
-This repository contains the code and processed query files for evaluating benign-calibrated query-traffic detection against model extraction attacks.
-The main detector uses maximum mean discrepancy (MMD) over sentence embeddings and compares incoming traffic windows against benign reference traffic.
-The repository also includes adapted and original-protocol baselines used in the paper: PRADA, SEAT, CAP, DATE, and marginal Mahalanobis distance.
+Official implementation and processed query-traffic artifact for:
+
+**An Embarrassingly Simple Detector for Model Extraction Attacks in Large Language Model API Traffic**
+
+This repository provides code for benign-calibrated detection of LLM model extraction attacks in API query traffic.
+The main detector applies maximum mean discrepancy (MMD) to sentence embeddings and compares incoming traffic windows against benign reference traffic.
+The artifact also includes adapted and original-protocol baselines used in the paper: PRADA, SEAT, CAP, DATE, and marginal Mahalanobis distance.
+
+## Overview
+
+The repository supports three types of experiments:
+
+- **Proposed detector:** benign-calibrated MMD over semantic query embeddings.
+- **Unified adapted baselines:** PRADA, SEAT, CAP, DATE, and Mahalanobis evaluated under a shared traffic-window protocol.
+- **Original-protocol baselines:** baseline-specific protocols used to study whether prior methods transfer directly to text-query model extraction traffic.
+
+The default setting uses `BAAI/bge-small-en-v1.5` as the sentence embedding model and evaluates both pure attacker traffic and mixed benign-attacker traffic windows.
 
 ## Repository Structure
 
 ```text
-MMD_detection/    # proposed benign-calibrated MMD detector
-PRADA/            # PRADA-style adapted and stream detectors
-SEAT/             # SEAT-style adapted and original account detectors
-CAP/              # CAP-style coverage detector
-DATE/             # DATE-style text anomaly detector
-Mahalanobis/      # marginal Mahalanobis detector
-data/             # processed query files used by the experiments
-requirements.txt  # shared Python dependencies
+MMD_detection/              # proposed benign-calibrated MMD detector
+PRADA/                      # PRADA-style adapted and stream detectors
+SEAT/                       # SEAT-style adapted and original account detectors
+CAP/                        # CAP-style coverage detector
+DATE/                       # DATE-style text anomaly detector
+Mahalanobis/                # marginal Mahalanobis detector
+data/                       # processed query files used by the experiments
+supplementary_experiments/  # extra MMD sensitivity and runtime scripts
+requirements.txt            # shared Python dependencies
 ```
 
 ## Installation
@@ -25,42 +40,11 @@ Install the shared dependencies from the repository root:
 pip install -r requirements.txt
 ```
 
-The experiments use `BAAI/bge-small-en-v1.5` as the default sentence embedding model.
-GPU execution is recommended for embedding and MMD/nearest-neighbor computations.
+GPU execution is recommended for embedding, MMD, and nearest-neighbor computations.
 
-## Data Format
+## Quick Start
 
-Each dataset is stored in JSONL format:
-
-```text
-data/<dataset>/normal/queries.jsonl
-data/<dataset>/attacker/queries.jsonl
-```
-
-Each row contains a `query` field:
-
-```json
-{"id": "example-0", "index": 0, "query": "What is the capital of France?"}
-```
-
-Two MNLI normal-query files exceed GitHub's 100MB single-file limit, so they are stored as split parts in this artifact:
-
-```text
-data/ME_BERT_mnli_random/normal_parts/
-data/ME_BERT_mnli_wiki/normal_parts/
-```
-
-Before running experiments on the two MNLI pairs, reconstruct the expected JSONL files:
-
-```bash
-mkdir -p data/ME_BERT_mnli_random/normal data/ME_BERT_mnli_wiki/normal
-cat data/ME_BERT_mnli_random/normal_parts/queries_*.part > data/ME_BERT_mnli_random/normal/queries.jsonl
-cat data/ME_BERT_mnli_wiki/normal_parts/queries_*.part > data/ME_BERT_mnli_wiki/normal/queries.jsonl
-```
-
-## Main MMD Detector
-
-Run one dataset:
+Run the proposed MMD detector on one dataset:
 
 ```bash
 DATASET=model_leeching \
@@ -85,15 +69,71 @@ SEED=20 bash MMD_detection/run_mmd_detection_multi_gpu.sh
 SEED=42 bash MMD_detection/run_mmd_detection_multi_gpu.sh
 ```
 
-Run batch-size and threshold sensitivity experiments:
+## Data Preparation
+
+Each dataset is stored in JSONL format:
+
+```text
+data/<dataset>/normal/queries.jsonl
+data/<dataset>/attacker/queries.jsonl
+```
+
+Each row contains a `query` field:
+
+```json
+{"id": "example-0", "index": 0, "query": "What is the capital of France?"}
+```
+
+Two MNLI normal-query files exceed GitHub's 100MB single-file limit, so they are stored as split parts:
+
+```text
+data/ME_BERT_mnli_random/normal_parts/
+data/ME_BERT_mnli_wiki/normal_parts/
+```
+
+Before running experiments on the two MNLI pairs, reconstruct the expected JSONL files:
 
 ```bash
-bash MMD_detection/run_mmd_sensitivity_gpu.sh
+mkdir -p data/ME_BERT_mnli_random/normal data/ME_BERT_mnli_wiki/normal
+cat data/ME_BERT_mnli_random/normal_parts/queries_*.part > data/ME_BERT_mnli_random/normal/queries.jsonl
+cat data/ME_BERT_mnli_wiki/normal_parts/queries_*.part > data/ME_BERT_mnli_wiki/normal/queries.jsonl
 ```
+
+## Reproducing Experiments
+
+### Proposed MMD Detector
+
+| Experiment | Command |
+| --- | --- |
+| Single dataset | `bash MMD_detection/run_mmd_detection_gpu.sh` |
+| Main multi-dataset run | `bash MMD_detection/run_mmd_detection_multi_gpu.sh` |
+| Batch-size and threshold sensitivity | `bash MMD_detection/run_mmd_sensitivity_gpu.sh` |
 
 The MMD detector writes `metadata.json` and `batch_scores.csv` under the selected output directory.
 
-## Supplementary Experiments
+### Adapted Baselines
+
+| Method | Command |
+| --- | --- |
+| PRADA | `bash PRADA/run_prada_detection.sh` |
+| SEAT | `bash SEAT/run_seat_detection.sh` |
+| CAP | `bash CAP/run_cap_detection.sh` |
+| DATE | `bash DATE/run_date_detection.sh` |
+| Mahalanobis | `bash Mahalanobis/run_mahalanobis_detection.sh` |
+
+### Original-Protocol Baselines
+
+| Method | Command |
+| --- | --- |
+| PRADA | `bash PRADA/run_prada_stream_detection.sh` |
+| SEAT | `bash SEAT/run_seat_original_detection.sh` |
+| CAP | `bash CAP/run_cap_original_detection.sh` |
+| DATE | `bash DATE/run_date_original_detection.sh` |
+| Mahalanobis | `bash Mahalanobis/run_mahalanobis_sample_detection.sh` |
+
+Multi-dataset wrappers are available when the corresponding folder provides a `*_multi.sh` script.
+
+### Supplementary Experiments
 
 The `supplementary_experiments/` folder contains scripts for extra MMD sensitivity and runtime analyses:
 
@@ -107,99 +147,36 @@ bash supplementary_experiments/run_cold_cache_wallclock.sh
 By default, these scripts write aggregate CSV files under `supplementary_experiments/<experiment-name>/results/`.
 They may also create local `logs/`, `outputs/`, and `cache/` directories during execution.
 
-## Adapted Baselines
+## Configuration
 
-Run adapted PRADA:
-
-```bash
-bash PRADA/run_prada_detection.sh
-```
-
-Run adapted SEAT:
-
-```bash
-bash SEAT/run_seat_detection.sh
-```
-
-Run adapted CAP:
-
-```bash
-bash CAP/run_cap_detection.sh
-```
-
-Run adapted DATE:
-
-```bash
-bash DATE/run_date_detection.sh
-```
-
-Run adapted marginal Mahalanobis:
-
-```bash
-bash Mahalanobis/run_mahalanobis_detection.sh
-```
-
-Most scripts accept shared environment variables:
+Most scripts accept the following environment variables:
 
 ```bash
 DATASET=model_leeching
 DATASETS=model_leeching,Query_efficent_med,Meaeq_HATESPEECH
 BATCH_SIZE=1500
-DEVICE=cuda
 SEED=42
+DEVICE=cuda
 OUTPUT_ROOT=<output-directory>
 ```
 
-## One-Sided and Two-Sided Decisions
-
-Several adapted baselines can be run with either one-sided or two-sided benign-calibrated decisions.
-The one-sided setting follows the expected suspicious direction of the original method.
-The two-sided setting flags scores that fall outside the benign calibration interval.
-
-PRADA uses `TAIL`:
+Several adapted baselines can be run with either one-sided or two-sided benign-calibrated decisions:
 
 ```bash
-TAIL=upper bash PRADA/run_prada_detection.sh      # one-sided
-TAIL=two-sided bash PRADA/run_prada_detection.sh  # two-sided
+TAIL=upper bash PRADA/run_prada_detection.sh
+TAIL=two-sided bash PRADA/run_prada_detection.sh
+
+DETECTION_TAIL=upper bash SEAT/run_seat_detection.sh
+DETECTION_TAIL=two-sided bash SEAT/run_seat_detection.sh
+
+TAIL=high bash CAP/run_cap_detection.sh
+TAIL=two-sided bash CAP/run_cap_detection.sh
+
+TEST_SIDEDNESS=upper bash DATE/run_date_detection.sh
+TEST_SIDEDNESS=two-sided bash DATE/run_date_detection.sh
 ```
 
-SEAT uses `DETECTION_TAIL`:
-
-```bash
-DETECTION_TAIL=upper bash SEAT/run_seat_detection.sh      # one-sided
-DETECTION_TAIL=two-sided bash SEAT/run_seat_detection.sh  # two-sided
-```
-
-CAP uses `TAIL` with CAP's original high-coverage direction:
-
-```bash
-TAIL=high bash CAP/run_cap_detection.sh        # one-sided
-TAIL=two-sided bash CAP/run_cap_detection.sh   # two-sided
-```
-
-DATE uses `TEST_SIDEDNESS`:
-
-```bash
-TEST_SIDEDNESS=upper bash DATE/run_date_detection.sh      # one-sided
-TEST_SIDEDNESS=two-sided bash DATE/run_date_detection.sh  # two-sided
-```
-
-The Mahalanobis baseline in this artifact uses the marginal distance score with an upper-tail benign-calibrated threshold.
-
-## Original-Protocol Baselines
-
-The paper also evaluates whether original baseline protocols transfer to this setting.
-Use the following scripts for the original-style runs:
-
-```bash
-bash PRADA/run_prada_stream_detection.sh
-bash SEAT/run_seat_original_detection.sh
-bash CAP/run_cap_original_detection.sh
-bash DATE/run_date_original_detection.sh
-bash Mahalanobis/run_mahalanobis_sample_detection.sh
-```
-
-Multi-dataset wrappers are available when the corresponding folder provides a `*_multi.sh` script.
+The Mahalanobis baseline uses the marginal distance score with an upper-tail benign-calibrated threshold.
 
 ## Method Notes
 
@@ -231,3 +208,11 @@ metadata.json
 ```
 
 These outputs are sufficient to compute benign FPR, attacker TPR, mixed-traffic TPR, average TPR, and balanced accuracy.
+
+## Citation
+
+If you find this repository useful, please cite the paper. A BibTeX entry will be added after the public preprint is available.
+
+## Contact
+
+For questions about the code or experiments, please open an issue in this repository.
