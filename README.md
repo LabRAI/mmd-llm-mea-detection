@@ -131,7 +131,8 @@ The MMD detector writes `metadata.json` and `batch_scores.csv` under the selecte
 | DATE | `bash DATE/run_date_original_detection.sh` |
 | Mahalanobis | `bash Mahalanobis/run_mahalanobis_sample_detection.sh` |
 
-Multi-dataset wrappers are available when the corresponding folder provides a `*_multi.sh` script.
+For multi-dataset runs, PRADA accepts a comma-separated `DATASET` value directly.
+SEAT, CAP, DATE, and Mahalanobis provide `*_multi.sh` wrappers.
 
 ### Supplementary Experiments
 
