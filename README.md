@@ -1,4 +1,4 @@
-# Anonymous Artifact: Model Extraction Query-Traffic Detection
+# Model Extraction Query-Traffic Detection
 
 This repository contains the code and processed query files for evaluating benign-calibrated query-traffic detection against model extraction attacks.
 The main detector uses maximum mean discrepancy (MMD) over sentence embeddings and compares incoming traffic windows against benign reference traffic.
