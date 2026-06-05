@@ -1,5 +1,7 @@
 # MMD-LLM-MEA-Detection
 
+[Paper](https://arxiv.org/abs/2606.05725)
+
 Official implementation and processed query-traffic artifact for:
 
 **An Embarrassingly Simple Detector for Model Extraction Attacks in Large Language Model API Traffic**
@@ -212,7 +214,18 @@ These outputs are sufficient to compute benign FPR, attacker TPR, mixed-traffic 
 
 ## Citation
 
-If you find this repository useful, please cite the paper. A BibTeX entry will be added after the public preprint is available.
+If you find this repository useful, please cite our paper:
+
+```bibtex
+@misc{liu2026embarrassinglysimpledetectormodel,
+      title={An Embarrassingly Simple Detector for Model Extraction Attacks in Large Language Model API Traffic}, 
+      author={Shuze Liu and Qianwen Guo and Yushun Dong},
+      year={2026},
+      eprint={2606.05725},
+      archivePrefix={arXiv},
+      primaryClass={cs.CR},
+      url={https://arxiv.org/abs/2606.05725}, 
+}
 
 ## Contact
 
