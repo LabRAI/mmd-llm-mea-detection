@@ -29,7 +29,7 @@ SEAT/                       # SEAT-style adapted and original account detectors
 CAP/                        # CAP-style coverage detector
 DATE/                       # DATE-style text anomaly detector
 Mahalanobis/                # marginal Mahalanobis detector
-data/                       # processed query files used by the experiments
+data/                       # processed query files; see Data Preparation
 supplementary_experiments/  # extra MMD sensitivity and runtime scripts
 requirements.txt            # shared Python dependencies
 ```
@@ -73,6 +73,26 @@ SEED=42 bash MMD_detection/run_mmd_detection_multi_gpu.sh
 
 ## Data Preparation
 
+The processed query data are hosted on Hugging Face:
+
+```text
+https://huggingface.co/datasets/ShuzeLiu11/mmd-llm-mea-detection-data
+```
+
+Download the dataset into the repository root before running experiments:
+
+```bash
+hf download ShuzeLiu11/mmd-llm-mea-detection-data \
+  --repo-type dataset \
+  --local-dir data
+```
+
+Alternatively, clone the dataset repository directly:
+
+```bash
+git clone https://huggingface.co/datasets/ShuzeLiu11/mmd-llm-mea-detection-data data
+```
+
 Each dataset is stored in JSONL format:
 
 ```text
@@ -84,21 +104,6 @@ Each row contains a `query` field:
 
 ```json
 {"id": "example-0", "index": 0, "query": "What is the capital of France?"}
-```
-
-Two MNLI normal-query files exceed GitHub's 100MB single-file limit, so they are stored as split parts:
-
-```text
-data/ME_BERT_mnli_random/normal_parts/
-data/ME_BERT_mnli_wiki/normal_parts/
-```
-
-Before running experiments on the two MNLI pairs, reconstruct the expected JSONL files:
-
-```bash
-mkdir -p data/ME_BERT_mnli_random/normal data/ME_BERT_mnli_wiki/normal
-cat data/ME_BERT_mnli_random/normal_parts/queries_*.part > data/ME_BERT_mnli_random/normal/queries.jsonl
-cat data/ME_BERT_mnli_wiki/normal_parts/queries_*.part > data/ME_BERT_mnli_wiki/normal/queries.jsonl
 ```
 
 ## Reproducing Experiments
